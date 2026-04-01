@@ -8,173 +8,255 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --sky: #e8f4fd;
-    --sky-mid: #c2e2f7;
-    --sky-deep: #7ec8e3;
-    --blue: #2b8cc4;
-    --blue-dark: #1a5f8c;
-    --navy: #0d3a57;
-    --white: #ffffff;
-    --off-white: #f5faff;
-    --text: #1a3a50;
-    --muted: #5a8aaa;
-    --accent: #f0a500;
-    --light-border: rgba(43,140,196,0.18);
+    --sky:#e8f4fd; --sky-mid:#c2e2f7; --sky-deep:#7ec8e3;
+    --blue:#2b8cc4; --blue-dark:#1a5f8c; --navy:#0d3a57;
+    --white:#ffffff; --off-white:#f5faff;
+    --text:#1a3a50; --muted:#5a8aaa; --light-border:rgba(43,140,196,0.18);
   }
-  * { margin:0; padding:0; box-sizing:border-box; }
-  html { scroll-behavior: smooth; }
-  body { font-family: 'DM Sans', sans-serif; background: var(--white); color: var(--text); overflow-x: hidden; }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'DM Sans',sans-serif;background:var(--white);color:var(--text);overflow-x:hidden;}
 
   /* NAV */
-  nav {
-    position: fixed; top:0; left:0; right:0; z-index:999;
-    display:flex; align-items:center; justify-content:space-between;
-    padding:0 6vw; height:68px;
-    background: rgba(255,255,255,0.88); backdrop-filter: blur(18px);
-    border-bottom: 1px solid var(--light-border); transition: box-shadow .3s;
-  }
-  nav.scrolled { box-shadow: 0 4px 24px rgba(43,140,196,0.12); }
-  .nav-logo { font-family:'Cormorant Garamond',serif; font-size:1.55rem; font-weight:700; color:var(--blue-dark); line-height:1; }
-  .nav-logo span { color:var(--blue); }
-  .nav-sub { font-size:.62rem; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); font-weight:500; }
-  .nav-links { display:flex; gap:28px; list-style:none; }
-  .nav-links a { font-size:.82rem; font-weight:500; letter-spacing:.04em; color:var(--text); text-decoration:none; position:relative; padding-bottom:2px; transition:color .2s; }
-  .nav-links a::after { content:''; position:absolute; bottom:0; left:0; right:100%; height:1.5px; background:var(--blue); transition:right .25s; }
-  .nav-links a:hover { color:var(--blue); }
-  .nav-links a:hover::after { right:0; }
-  .nav-cta { background:var(--blue); color:#fff; border:none; padding:9px 20px; border-radius:50px; font-size:.8rem; font-weight:600; cursor:pointer; transition:background .2s,transform .15s; text-decoration:none; }
-  .nav-cta:hover { background:var(--blue-dark); transform:translateY(-1px); }
-  .hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; background:none; border:none; padding:4px; }
-  .hamburger span { display:block; width:24px; height:2px; background:var(--text); border-radius:2px; transition:.3s; }
+  nav{position:fixed;top:0;left:0;right:0;z-index:999;display:flex;align-items:center;justify-content:space-between;padding:0 6vw;height:68px;background:rgba(255,255,255,0.9);backdrop-filter:blur(18px);border-bottom:1px solid var(--light-border);transition:box-shadow .3s;}
+  nav.scrolled{box-shadow:0 4px 24px rgba(43,140,196,0.12);}
+  .nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.55rem;font-weight:700;color:var(--blue-dark);line-height:1;}
+  .nav-logo span{color:var(--blue);}
+  .nav-sub{font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:500;}
+  .nav-links{display:flex;gap:28px;list-style:none;}
+  .nav-links a{font-size:.82rem;font-weight:500;color:var(--text);text-decoration:none;position:relative;padding-bottom:2px;transition:color .2s;}
+  .nav-links a::after{content:'';position:absolute;bottom:0;left:0;right:100%;height:1.5px;background:var(--blue);transition:right .25s;}
+  .nav-links a:hover{color:var(--blue);}
+  .nav-links a:hover::after{right:0;}
+  .nav-cta{background:var(--blue);color:#fff;border:none;padding:9px 20px;border-radius:50px;font-size:.8rem;font-weight:600;cursor:pointer;text-decoration:none;transition:background .2s,transform .15s;}
+  .nav-cta:hover{background:var(--blue-dark);transform:translateY(-1px);}
+  .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px;}
+  .hamburger span{display:block;width:24px;height:2px;background:var(--text);border-radius:2px;transition:.3s;}
 
   /* HERO */
-  #hero {
-    min-height:100vh; background:linear-gradient(160deg, var(--sky) 0%, var(--sky-mid) 40%, var(--white) 100%);
-    display:flex; align-items:center; padding:100px 6vw 60px; position:relative; overflow:hidden;
-  }
-  .hero-blob { position:absolute; border-radius:50%; background:radial-gradient(circle, rgba(126,200,227,0.35) 0%, transparent 70%); animation:blobFloat 8s ease-in-out infinite alternate; }
-  .blob1 { width:520px; height:520px; top:-120px; right:-80px; }
-  .blob2 { width:320px; height:320px; bottom:-60px; left:10%; animation-delay:-3s; }
-  @keyframes blobFloat { from{transform:scale(1) translate(0,0);} to{transform:scale(1.08) translate(20px,-20px);} }
-  .hero-content { max-width:560px; position:relative; z-index:2; }
-  .hero-badge { display:inline-flex; align-items:center; gap:7px; background:rgba(43,140,196,0.1); border:1px solid rgba(43,140,196,0.25); padding:6px 16px; border-radius:50px; font-size:.74rem; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--blue); margin-bottom:22px; animation:fadeUp .7s ease both; }
-  .badge-dot { width:7px; height:7px; background:var(--blue); border-radius:50%; animation:pulse 2s infinite; }
-  @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:.3;} }
-  .hero-title { font-family:'Cormorant Garamond',serif; font-size:clamp(2.8rem,6vw,4.4rem); font-weight:700; line-height:1.1; color:var(--navy); animation:fadeUp .8s .1s ease both; }
-  .hero-title em { font-style:normal; color:var(--blue); }
-  .hero-desc { margin-top:18px; font-size:1.02rem; line-height:1.72; color:var(--muted); max-width:460px; animation:fadeUp .8s .2s ease both; }
-  .hero-actions { margin-top:32px; display:flex; gap:14px; flex-wrap:wrap; animation:fadeUp .8s .32s ease both; }
-  .btn-primary { background:var(--blue); color:#fff; padding:13px 28px; border-radius:50px; font-size:.88rem; font-weight:600; text-decoration:none; border:none; cursor:pointer; display:inline-flex; align-items:center; gap:8px; transition:background .2s,transform .15s,box-shadow .2s; box-shadow:0 4px 18px rgba(43,140,196,0.3); }
-  .btn-primary:hover { background:var(--blue-dark); transform:translateY(-2px); box-shadow:0 8px 28px rgba(43,140,196,0.38); }
-  .btn-outline { background:transparent; color:var(--blue); padding:13px 28px; border-radius:50px; font-size:.88rem; font-weight:600; text-decoration:none; border:2px solid var(--blue); display:inline-flex; align-items:center; gap:8px; transition:all .2s; }
-  .btn-outline:hover { background:var(--blue); color:#fff; transform:translateY(-2px); }
-  .hero-img-wrap { flex:1; display:flex; justify-content:flex-end; align-items:center; position:relative; z-index:2; min-width:280px; animation:fadeIn 1s .3s ease both; }
-  .hero-card-float { background:var(--white); border-radius:24px; padding:32px 28px; box-shadow:0 20px 60px rgba(13,58,87,0.14); width:300px; border:1px solid var(--light-border); animation:floatCard 4s ease-in-out infinite alternate; }
-  @keyframes floatCard { from{transform:translateY(0);} to{transform:translateY(-14px);} }
-  .hero-card-title { font-family:'Cormorant Garamond',serif; font-size:1.3rem; font-weight:700; color:var(--navy); margin-bottom:16px; }
-  .stat-row { display:flex; gap:14px; margin-top:14px; }
-  .stat-pill { flex:1; background:var(--sky); border-radius:14px; padding:12px 10px; text-align:center; }
-  .stat-pill .num { font-family:'Cormorant Garamond',serif; font-size:1.7rem; font-weight:700; color:var(--blue-dark); }
-  .stat-pill .lbl { font-size:.7rem; color:var(--muted); font-weight:500; }
-  .timing-chip { display:flex; align-items:center; gap:9px; background:var(--sky); border-radius:12px; padding:10px 14px; margin-top:14px; font-size:.8rem; color:var(--navy); font-weight:500; }
-  @keyframes fadeUp { from{opacity:0;transform:translateY(26px);} to{opacity:1;transform:none;} }
-  @keyframes fadeIn { from{opacity:0;} to{opacity:1;} }
+  #hero{min-height:100vh;background:linear-gradient(160deg,var(--sky) 0%,var(--sky-mid) 40%,var(--white) 100%);display:flex;align-items:center;padding:100px 6vw 60px;position:relative;overflow:hidden;}
+  .hero-blob{position:absolute;border-radius:50%;background:radial-gradient(circle,rgba(126,200,227,0.35) 0%,transparent 70%);animation:blobFloat 8s ease-in-out infinite alternate;}
+  .blob1{width:520px;height:520px;top:-120px;right:-80px;}
+  .blob2{width:320px;height:320px;bottom:-60px;left:10%;animation-delay:-3s;}
+  @keyframes blobFloat{from{transform:scale(1) translate(0,0);}to{transform:scale(1.08) translate(20px,-20px);}}
+  .hero-content{max-width:560px;position:relative;z-index:2;}
+  .hero-badge{display:inline-flex;align-items:center;gap:7px;background:rgba(43,140,196,0.1);border:1px solid rgba(43,140,196,0.25);padding:6px 16px;border-radius:50px;font-size:.74rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--blue);margin-bottom:22px;animation:fadeUp .7s ease both;}
+  .badge-dot{width:7px;height:7px;background:var(--blue);border-radius:50%;animation:pulse 2s infinite;}
+  @keyframes pulse{0%,100%{opacity:1;}50%{opacity:.3;}}
+  .hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.8rem,6vw,4.4rem);font-weight:700;line-height:1.1;color:var(--navy);animation:fadeUp .8s .1s ease both;}
+  .hero-title em{font-style:normal;color:var(--blue);}
+  .hero-desc{margin-top:18px;font-size:1.02rem;line-height:1.72;color:var(--muted);max-width:460px;animation:fadeUp .8s .2s ease both;}
+  .hero-actions{margin-top:32px;display:flex;gap:14px;flex-wrap:wrap;animation:fadeUp .8s .32s ease both;}
+  .btn-primary{background:var(--blue);color:#fff;padding:13px 28px;border-radius:50px;font-size:.88rem;font-weight:600;text-decoration:none;border:none;cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:background .2s,transform .15s,box-shadow .2s;box-shadow:0 4px 18px rgba(43,140,196,0.3);}
+  .btn-primary:hover{background:var(--blue-dark);transform:translateY(-2px);box-shadow:0 8px 28px rgba(43,140,196,0.38);}
+  .btn-outline{background:transparent;color:var(--blue);padding:13px 28px;border-radius:50px;font-size:.88rem;font-weight:600;text-decoration:none;border:2px solid var(--blue);display:inline-flex;align-items:center;gap:8px;transition:all .2s;}
+  .btn-outline:hover{background:var(--blue);color:#fff;transform:translateY(-2px);}
+  .hero-img-wrap{flex:1;display:flex;justify-content:flex-end;align-items:center;position:relative;z-index:2;min-width:280px;animation:fadeIn 1s .3s ease both;}
+  .hero-card-float{background:var(--white);border-radius:24px;padding:32px 28px;box-shadow:0 20px 60px rgba(13,58,87,0.14);width:300px;border:1px solid var(--light-border);animation:floatCard 4s ease-in-out infinite alternate;}
+  @keyframes floatCard{from{transform:translateY(0);}to{transform:translateY(-14px);}}
+  .hero-card-title{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:700;color:var(--navy);margin-bottom:16px;}
+  .stat-row{display:flex;gap:14px;margin-top:14px;}
+  .stat-pill{flex:1;background:var(--sky);border-radius:14px;padding:12px 10px;text-align:center;}
+  .stat-pill .num{font-family:'Cormorant Garamond',serif;font-size:1.7rem;font-weight:700;color:var(--blue-dark);}
+  .stat-pill .lbl{font-size:.7rem;color:var(--muted);font-weight:500;}
+  .timing-chip{display:flex;align-items:center;gap:9px;background:var(--sky);border-radius:12px;padding:10px 14px;margin-top:14px;font-size:.8rem;color:var(--navy);font-weight:500;}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(26px);}to{opacity:1;transform:none;}}
+  @keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
 
-  /* SECTION COMMON */
-  section { padding:80px 6vw; }
-  .section-tag { display:inline-block; font-size:.72rem; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--blue); margin-bottom:10px; }
-  .section-title { font-family:'Cormorant Garamond',serif; font-size:clamp(2rem,4vw,2.9rem); font-weight:700; color:var(--navy); line-height:1.18; }
-  .section-title em { font-style:normal; color:var(--blue); }
-  .section-desc { margin-top:12px; font-size:.97rem; color:var(--muted); line-height:1.72; max-width:560px; }
-  .divider { width:48px; height:3px; background:var(--blue); border-radius:3px; margin:18px 0 36px; }
+  /* SECTIONS */
+  section{padding:80px 6vw;}
+  .section-tag{display:inline-block;font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin-bottom:10px;}
+  .section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4vw,2.9rem);font-weight:700;color:var(--navy);line-height:1.18;}
+  .section-title em{font-style:normal;color:var(--blue);}
+  .section-desc{margin-top:12px;font-size:.97rem;color:var(--muted);line-height:1.72;max-width:560px;}
+  .divider{width:48px;height:3px;background:var(--blue);border-radius:3px;margin:18px 0 36px;}
 
   /* ABOUT */
-  #about { background:var(--white); }
-  .about-grid { display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center; }
-  .about-visual { background:linear-gradient(135deg, var(--sky) 0%, var(--sky-mid) 100%); border-radius:32px; padding:40px 32px; position:relative; overflow:hidden; }
-  .about-visual::before { content:''; position:absolute; width:200px; height:200px; background:rgba(43,140,196,0.12); border-radius:50%; top:-50px; right:-50px; }
-  .about-quote { font-family:'Cormorant Garamond',serif; font-size:1.55rem; font-weight:600; color:var(--navy); line-height:1.5; position:relative; z-index:1; }
-  .about-quote::before { content:'\201C'; font-size:5rem; color:var(--blue); opacity:.2; position:absolute; top:-20px; left:-10px; line-height:1; font-family:'Cormorant Garamond',serif; }
-  .unit-badge { display:inline-flex; align-items:center; gap:8px; background:var(--white); border:1px solid var(--light-border); padding:10px 18px; border-radius:12px; margin-top:22px; font-size:.78rem; font-weight:600; color:var(--navy); }
-  .info-list { list-style:none; display:flex; flex-direction:column; gap:14px; }
-  .info-list li { display:flex; align-items:flex-start; gap:12px; font-size:.9rem; color:var(--text); line-height:1.55; }
-  .info-icon { width:36px; height:36px; border-radius:10px; background:var(--sky); display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:1rem; }
+  #about{background:var(--white);}
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;}
+  .about-visual{background:linear-gradient(135deg,var(--sky) 0%,var(--sky-mid) 100%);border-radius:32px;padding:40px 32px;position:relative;overflow:hidden;}
+  .about-visual::before{content:'';position:absolute;width:200px;height:200px;background:rgba(43,140,196,0.12);border-radius:50%;top:-50px;right:-50px;}
+  .about-quote{font-family:'Cormorant Garamond',serif;font-size:1.55rem;font-weight:600;color:var(--navy);line-height:1.5;position:relative;z-index:1;}
+  .about-quote::before{content:'\201C';font-size:5rem;color:var(--blue);opacity:.2;position:absolute;top:-20px;left:-10px;line-height:1;font-family:'Cormorant Garamond',serif;}
+  .unit-badge{display:inline-flex;align-items:center;gap:8px;background:var(--white);border:1px solid var(--light-border);padding:10px 18px;border-radius:12px;margin-top:22px;font-size:.78rem;font-weight:600;color:var(--navy);}
+  .info-list{list-style:none;display:flex;flex-direction:column;gap:14px;}
+  .info-list li{display:flex;align-items:flex-start;gap:12px;font-size:.9rem;color:var(--text);line-height:1.55;}
+  .info-icon{width:36px;height:36px;border-radius:10px;background:var(--sky);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1rem;}
+
+  /* ── HERO IMAGE CAROUSEL ── */
+  #hero-carousel{background:var(--off-white);padding:0;overflow:hidden;}
+  .hcar-wrap{position:relative;}
+  .hcar-track-outer{overflow:hidden;}
+  .hcar-track{display:flex;transition:transform .6s cubic-bezier(.77,0,.175,1);}
+  .hcar-slide{min-width:100%;position:relative;height:480px;overflow:hidden;}
+  .hcar-slide img{width:100%;height:100%;object-fit:cover;display:block;}
+  .hcar-overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(13,58,87,0.65) 0%,transparent 60%);}
+  .hcar-caption{position:absolute;bottom:40px;left:6vw;color:#fff;max-width:480px;}
+  .hcar-caption h3{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:700;line-height:1.2;margin-bottom:8px;}
+  .hcar-caption p{font-size:.9rem;opacity:.85;line-height:1.6;}
+  .hcar-btn{position:absolute;top:50%;transform:translateY(-50%);width:46px;height:46px;border-radius:50%;background:rgba(255,255,255,0.9);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s,transform .2s;z-index:10;box-shadow:0 4px 16px rgba(0,0,0,0.15);}
+  .hcar-btn:hover{background:#fff;transform:translateY(-50%) scale(1.08);}
+  .hcar-prev{left:20px;}
+  .hcar-next{right:20px;}
+  .hcar-dots{position:absolute;bottom:16px;right:6vw;display:flex;gap:7px;}
+  .hcar-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.5);border:none;cursor:pointer;transition:background .2s,width .2s;padding:0;}
+  .hcar-dot.active{background:#fff;width:22px;border-radius:4px;}
 
   /* PROGRAMMES */
-  #programmes { background:var(--off-white); }
-  .prog-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:18px; }
-  .prog-card { background:var(--white); border-radius:20px; padding:26px 22px; border:1px solid var(--light-border); transition:transform .25s,box-shadow .25s; cursor:default; }
-  .prog-card:hover { transform:translateY(-6px); box-shadow:0 16px 40px rgba(43,140,196,0.14); }
-  .prog-icon { width:52px; height:52px; border-radius:16px; background:linear-gradient(135deg,var(--sky) 0%,var(--sky-mid) 100%); display:flex; align-items:center; justify-content:center; font-size:1.5rem; margin-bottom:14px; }
-  .prog-name { font-family:'Cormorant Garamond',serif; font-size:1.08rem; font-weight:600; color:var(--navy); }
-  .prog-desc { font-size:.78rem; color:var(--muted); margin-top:5px; line-height:1.55; }
+  #programmes{background:var(--off-white);}
+  .prog-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:18px;}
+  .prog-card{background:var(--white);border-radius:20px;padding:26px 22px;border:1px solid var(--light-border);transition:transform .25s,box-shadow .25s;cursor:default;}
+  .prog-card:hover{transform:translateY(-6px);box-shadow:0 16px 40px rgba(43,140,196,0.14);}
+  .prog-icon{width:52px;height:52px;border-radius:16px;background:linear-gradient(135deg,var(--sky) 0%,var(--sky-mid) 100%);display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin-bottom:14px;}
+  .prog-name{font-family:'Cormorant Garamond',serif;font-size:1.08rem;font-weight:600;color:var(--navy);}
+  .prog-desc{font-size:.78rem;color:var(--muted);margin-top:5px;line-height:1.55;}
+
+  /* ── VIDEO CAROUSEL ── */
+  #videos{background:var(--navy);padding:80px 6vw;}
+  #videos .section-title{color:#fff;}
+  #videos .section-tag{color:var(--sky-deep);}
+  #videos .divider{background:var(--sky-deep);}
+  #videos .section-desc{color:rgba(255,255,255,0.6);}
+  .vcar-wrap{position:relative;margin-top:0;}
+  .vcar-track-outer{overflow:hidden;border-radius:20px;}
+  .vcar-track{display:flex;gap:20px;transition:transform .55s cubic-bezier(.77,0,.175,1);}
+  .vcar-slide{min-width:calc(33.333% - 14px);background:rgba(255,255,255,0.06);border-radius:20px;overflow:hidden;border:1px solid rgba(255,255,255,0.1);flex-shrink:0;cursor:pointer;transition:transform .25s,box-shadow .25s;}
+  .vcar-slide:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(0,0,0,0.3);}
+  .vcar-thumb{position:relative;height:190px;overflow:hidden;}
+  .vcar-thumb img{width:100%;height:100%;object-fit:cover;transition:transform .4s;}
+  .vcar-slide:hover .vcar-thumb img{transform:scale(1.05);}
+  .vcar-play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(13,58,87,0.4);}
+  .vcar-play-btn{width:54px;height:54px;border-radius:50%;background:rgba(255,255,255,0.95);display:flex;align-items:center;justify-content:center;transition:transform .2s,background .2s;}
+  .vcar-slide:hover .vcar-play-btn{transform:scale(1.1);background:#fff;}
+  .vcar-play-btn svg{margin-left:3px;}
+  .vcar-info{padding:16px 18px 20px;}
+  .vcar-tag{font-size:.68rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--sky-deep);margin-bottom:6px;}
+  .vcar-title{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-weight:600;color:#fff;line-height:1.4;}
+  .vcar-dur{font-size:.75rem;color:rgba(255,255,255,0.45);margin-top:6px;}
+  .vcar-nav{display:flex;gap:10px;margin-top:22px;justify-content:flex-end;}
+  .vcar-btn{width:42px;height:42px;border-radius:50%;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s;}
+  .vcar-btn:hover{background:rgba(255,255,255,0.18);}
+
+  /* VIDEO MODAL */
+  .vid-modal{display:none;position:fixed;inset:0;z-index:2000;background:rgba(0,0,0,0.88);align-items:center;justify-content:center;}
+  .vid-modal.open{display:flex;}
+  .vid-modal-inner{width:min(860px,94vw);position:relative;}
+  .vid-modal-close{position:absolute;top:-44px;right:0;background:none;border:none;color:#fff;font-size:1.8rem;cursor:pointer;opacity:.8;transition:opacity .2s;}
+  .vid-modal-close:hover{opacity:1;}
+  .vid-ratio{position:relative;padding-bottom:56.25%;height:0;border-radius:16px;overflow:hidden;}
+  .vid-ratio iframe{position:absolute;inset:0;width:100%;height:100%;border:none;}
+
+  /* GALLERY */
+  #gallery{background:var(--white);}
+  .gallery-header{display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:16px;margin-bottom:32px;}
+  .gal-tabs{display:flex;gap:8px;flex-wrap:wrap;}
+  .gal-tab{padding:7px 18px;border-radius:50px;font-size:.78rem;font-weight:600;cursor:pointer;border:1.5px solid var(--light-border);background:transparent;color:var(--muted);transition:all .2s;}
+  .gal-tab.active,.gal-tab:hover{background:var(--blue);color:#fff;border-color:var(--blue);}
+  .gal-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+  .gal-item{border-radius:16px;overflow:hidden;cursor:pointer;position:relative;aspect-ratio:1;}
+  .gal-item img{width:100%;height:100%;object-fit:cover;transition:transform .4s;}
+  .gal-item:hover img{transform:scale(1.07);}
+  .gal-item-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(13,58,87,0.7) 0%,transparent 60%);opacity:0;transition:opacity .3s;display:flex;align-items:flex-end;padding:14px;}
+  .gal-item:hover .gal-item-overlay{opacity:1;}
+  .gal-item-label{color:#fff;font-size:.78rem;font-weight:600;}
+  .gal-item.wide{grid-column:span 2;}
+  .gal-item.tall{grid-row:span 2;}
+
+  /* LIGHTBOX */
+  .lightbox{display:none;position:fixed;inset:0;z-index:2000;background:rgba(0,0,0,0.92);align-items:center;justify-content:center;}
+  .lightbox.open{display:flex;}
+  .lb-inner{position:relative;max-width:90vw;max-height:90vh;}
+  .lb-img{max-width:90vw;max-height:80vh;border-radius:12px;object-fit:contain;}
+  .lb-close{position:absolute;top:-44px;right:0;background:none;border:none;color:#fff;font-size:2rem;cursor:pointer;opacity:.8;}
+  .lb-close:hover{opacity:1;}
+  .lb-caption{color:rgba(255,255,255,0.7);text-align:center;margin-top:12px;font-size:.85rem;}
+  .lb-arrows{position:absolute;top:50%;transform:translateY(-50%);display:flex;justify-content:space-between;width:calc(100% + 100px);left:-50px;}
+  .lb-arrow{background:rgba(255,255,255,0.15);border:none;color:#fff;width:40px;height:40px;border-radius:50%;cursor:pointer;font-size:1.1rem;display:flex;align-items:center;justify-content:center;transition:background .2s;}
+  .lb-arrow:hover{background:rgba(255,255,255,0.3);}
 
   /* FACILITIES */
-  #facilities { background:var(--white); }
-  .fac-tabs { display:flex; gap:10px; flex-wrap:wrap; margin-bottom:32px; }
-  .fac-tab { padding:8px 20px; border-radius:50px; font-size:.8rem; font-weight:600; cursor:pointer; border:1.5px solid var(--light-border); background:transparent; color:var(--muted); transition:all .2s; }
-  .fac-tab.active,.fac-tab:hover { background:var(--blue); color:#fff; border-color:var(--blue); }
-  .fac-group { display:none; }
-  .fac-group.active { display:grid; grid-template-columns:repeat(auto-fill,minmax(180px,1fr)); gap:16px; }
-  .fac-item { background:var(--off-white); border-radius:16px; padding:20px 18px; display:flex; align-items:center; gap:13px; border:1px solid var(--light-border); transition:transform .2s,box-shadow .2s; }
-  .fac-item:hover { transform:translateY(-3px); box-shadow:0 8px 24px rgba(43,140,196,0.1); }
-  .fac-emoji { font-size:1.5rem; }
-  .fac-label { font-size:.85rem; font-weight:500; color:var(--navy); }
+  #facilities{background:var(--off-white);}
+  .fac-tabs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:32px;}
+  .fac-tab{padding:8px 20px;border-radius:50px;font-size:.8rem;font-weight:600;cursor:pointer;border:1.5px solid var(--light-border);background:transparent;color:var(--muted);transition:all .2s;}
+  .fac-tab.active,.fac-tab:hover{background:var(--blue);color:#fff;border-color:var(--blue);}
+  .fac-group{display:none;}
+  .fac-group.active{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:16px;}
+  .fac-item{background:var(--white);border-radius:16px;padding:20px 18px;display:flex;align-items:center;gap:13px;border:1px solid var(--light-border);transition:transform .2s,box-shadow .2s;}
+  .fac-item:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(43,140,196,0.1);}
+  .fac-emoji{font-size:1.5rem;}
+  .fac-label{font-size:.85rem;font-weight:500;color:var(--navy);}
+
+  /* TESTIMONIALS */
+  #testimonials{background:var(--white);padding:80px 6vw;}
+  .testi-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px;margin-top:0;}
+  .testi-card{background:var(--off-white);border-radius:22px;padding:28px 26px;border:1px solid var(--light-border);position:relative;}
+  .testi-quote-mark{font-family:'Cormorant Garamond',serif;font-size:4rem;color:var(--blue);opacity:.15;position:absolute;top:10px;left:20px;line-height:1;}
+  .testi-text{font-size:.91rem;line-height:1.72;color:var(--text);margin-top:20px;position:relative;z-index:1;}
+  .testi-author{display:flex;align-items:center;gap:12px;margin-top:20px;}
+  .testi-avatar{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--sky) 0%,var(--sky-mid) 100%);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;}
+  .testi-name{font-weight:600;font-size:.88rem;color:var(--navy);}
+  .testi-role{font-size:.74rem;color:var(--muted);}
+  .testi-stars{color:#f0a500;font-size:.88rem;margin-top:3px;}
 
   /* CONTACT */
-  #contact { background:linear-gradient(145deg,var(--navy) 0%,var(--blue-dark) 100%); position:relative; overflow:hidden; }
-  #contact::before { content:''; position:absolute; width:500px; height:500px; border-radius:50%; background:rgba(126,200,227,0.07); top:-150px; right:-150px; }
-  #contact .section-title { color:#fff; }
-  #contact .section-desc { color:rgba(255,255,255,0.65); }
-  #contact .section-tag { color:var(--sky-deep); }
-  #contact .divider { background:var(--sky-deep); }
-  .contact-grid { display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:start; }
-  .timing-card { background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.12); border-radius:24px; padding:28px; }
-  .timing-title { font-family:'Cormorant Garamond',serif; font-size:1.22rem; font-weight:600; color:#fff; margin-bottom:18px; display:flex; align-items:center; gap:10px; }
-  .timing-row { display:flex; align-items:center; justify-content:space-between; padding:12px 0; border-bottom:1px solid rgba(255,255,255,0.08); font-size:.86rem; flex-wrap:wrap; gap:8px; }
-  .timing-row:last-child { border:none; }
-  .timing-row .t-label { color:rgba(255,255,255,0.6); }
-  .timing-row .t-val { color:#fff; font-weight:600; }
-  .t-badge { background:rgba(126,200,227,0.2); color:var(--sky-deep); padding:3px 10px; border-radius:50px; font-size:.72rem; font-weight:600; }
-  .contact-info { display:flex; flex-direction:column; gap:16px; }
-  .cinfo-card { background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.12); border-radius:18px; padding:18px 22px; display:flex; align-items:center; gap:16px; transition:background .2s; text-decoration:none; }
-  .cinfo-card:hover { background:rgba(255,255,255,0.13); }
-  .cinfo-icon { width:44px; height:44px; border-radius:12px; background:rgba(126,200,227,0.18); display:flex; align-items:center; justify-content:center; font-size:1.2rem; flex-shrink:0; }
-  .cinfo-label { font-size:.7rem; color:rgba(255,255,255,0.5); font-weight:500; text-transform:uppercase; letter-spacing:.07em; }
-  .cinfo-val { font-size:.92rem; color:#fff; font-weight:500; margin-top:2px; }
-  .social-row { display:flex; gap:12px; margin-top:20px; flex-wrap:wrap; }
-  .soc-btn { display:inline-flex; align-items:center; gap:8px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); color:#fff; padding:9px 18px; border-radius:50px; font-size:.8rem; font-weight:500; text-decoration:none; transition:background .2s,transform .15s; }
-  .soc-btn:hover { background:rgba(255,255,255,0.18); transform:translateY(-2px); }
+  #contact{background:linear-gradient(145deg,var(--navy) 0%,var(--blue-dark) 100%);position:relative;overflow:hidden;}
+  #contact::before{content:'';position:absolute;width:500px;height:500px;border-radius:50%;background:rgba(126,200,227,0.07);top:-150px;right:-150px;}
+  #contact .section-title{color:#fff;}
+  #contact .section-desc{color:rgba(255,255,255,0.65);}
+  #contact .section-tag{color:var(--sky-deep);}
+  #contact .divider{background:var(--sky-deep);}
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start;}
+  .timing-card{background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:24px;padding:28px;}
+  .timing-title{font-family:'Cormorant Garamond',serif;font-size:1.22rem;font-weight:600;color:#fff;margin-bottom:18px;display:flex;align-items:center;gap:10px;}
+  .timing-row{display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.08);font-size:.86rem;flex-wrap:wrap;gap:8px;}
+  .timing-row:last-child{border:none;}
+  .timing-row .t-label{color:rgba(255,255,255,0.6);}
+  .timing-row .t-val{color:#fff;font-weight:600;}
+  .t-badge{background:rgba(126,200,227,0.2);color:var(--sky-deep);padding:3px 10px;border-radius:50px;font-size:.72rem;font-weight:600;}
+  .contact-info{display:flex;flex-direction:column;gap:16px;}
+  .cinfo-card{background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:18px;padding:18px 22px;display:flex;align-items:center;gap:16px;transition:background .2s;text-decoration:none;}
+  .cinfo-card:hover{background:rgba(255,255,255,0.13);}
+  .cinfo-icon{width:44px;height:44px;border-radius:12px;background:rgba(126,200,227,0.18);display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;}
+  .cinfo-label{font-size:.7rem;color:rgba(255,255,255,0.5);font-weight:500;text-transform:uppercase;letter-spacing:.07em;}
+  .cinfo-val{font-size:.92rem;color:#fff;font-weight:500;margin-top:2px;}
+  .social-row{display:flex;gap:12px;margin-top:20px;flex-wrap:wrap;}
+  .soc-btn{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);color:#fff;padding:9px 18px;border-radius:50px;font-size:.8rem;font-weight:500;text-decoration:none;transition:background .2s,transform .15s;}
+  .soc-btn:hover{background:rgba(255,255,255,0.18);transform:translateY(-2px);}
 
-  /* FOOTER */
-  footer { background:var(--navy); color:rgba(255,255,255,0.5); text-align:center; padding:24px 6vw; font-size:.78rem; border-top:1px solid rgba(255,255,255,0.06); }
-  footer a { color:var(--sky-deep); text-decoration:none; }
+  footer{background:var(--navy);color:rgba(255,255,255,0.5);text-align:center;padding:24px 6vw;font-size:.78rem;border-top:1px solid rgba(255,255,255,0.06);}
+  footer a{color:var(--sky-deep);text-decoration:none;}
 
-  /* REVEAL */
-  .reveal { opacity:0; transform:translateY(32px); transition:opacity .7s ease,transform .7s ease; }
-  .reveal.visible { opacity:1; transform:none; }
+  .reveal{opacity:0;transform:translateY(32px);transition:opacity .7s ease,transform .7s ease;}
+  .reveal.visible{opacity:1;transform:none;}
 
-  /* MOBILE */
-  @media(max-width:860px){
-    .nav-links,.nav-cta { display:none; }
-    .hamburger { display:flex; }
-    .mobile-menu { position:fixed; top:68px; left:0; right:0; background:var(--white); border-bottom:1px solid var(--light-border); padding:20px 6vw; flex-direction:column; gap:18px; display:none; z-index:998; box-shadow:0 8px 32px rgba(43,140,196,0.1); }
-    .mobile-menu.open { display:flex; }
-    .mobile-menu a { font-size:1rem; font-weight:500; color:var(--text); text-decoration:none; }
-    #hero { flex-direction:column; text-align:center; padding-top:110px; }
-    .hero-img-wrap { display:none; }
-    .hero-actions { justify-content:center; }
-    .about-grid,.contact-grid { grid-template-columns:1fr; }
+  @media(max-width:960px){
+    .vcar-slide{min-width:calc(50% - 10px);}
+    .gal-grid{grid-template-columns:repeat(3,1fr);}
+  }
+  @media(max-width:720px){
+    .nav-links,.nav-cta{display:none;}
+    .hamburger{display:flex;}
+    .mobile-menu{position:fixed;top:68px;left:0;right:0;background:var(--white);border-bottom:1px solid var(--light-border);padding:20px 6vw;flex-direction:column;gap:18px;display:none;z-index:998;box-shadow:0 8px 32px rgba(43,140,196,0.1);}
+    .mobile-menu.open{display:flex;}
+    .mobile-menu a{font-size:1rem;font-weight:500;color:var(--text);text-decoration:none;}
+    #hero{flex-direction:column;text-align:center;padding-top:110px;}
+    .hero-img-wrap{display:none;}
+    .hero-actions{justify-content:center;}
+    .about-grid,.contact-grid{grid-template-columns:1fr;}
+    .hcar-slide{height:300px;}
+    .vcar-slide{min-width:85%;}
+    .gal-grid{grid-template-columns:repeat(2,1fr);}
+    .gal-item.wide{grid-column:span 1;}
   }
 
-  /* WA FLOAT */
-  .wa-float { position:fixed; bottom:24px; right:24px; z-index:990; width:56px; height:56px; border-radius:50%; background:#25D366; display:flex; align-items:center; justify-content:center; box-shadow:0 6px 20px rgba(37,211,102,0.45); text-decoration:none; transition:transform .2s,box-shadow .2s; animation:waPop .6s 1.5s ease both; }
-  .wa-float:hover { transform:scale(1.1); box-shadow:0 10px 28px rgba(37,211,102,0.5); }
-  @keyframes waPop { from{opacity:0;transform:scale(0.5);} to{opacity:1;transform:scale(1);} }
+  .wa-float{position:fixed;bottom:24px;right:24px;z-index:990;width:56px;height:56px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 20px rgba(37,211,102,0.45);text-decoration:none;transition:transform .2s,box-shadow .2s;animation:waPop .6s 1.5s ease both;}
+  .wa-float:hover{transform:scale(1.1);}
+  @keyframes waPop{from{opacity:0;transform:scale(0.5);}to{opacity:1;transform:scale(1);}}
 </style>
 </head>
 <body>
 
+<!-- NAV -->
 <nav id="navbar">
   <div>
     <div class="nav-logo">Gourab<span>DDC</span></div>
@@ -183,18 +265,19 @@
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#programmes">Programmes</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#videos">Videos</a></li>
     <li><a href="#facilities">Facilities</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
   <a href="tel:7008879401" class="nav-cta">📞 Call Now</a>
-  <button class="hamburger" id="hamburger" aria-label="Menu">
-    <span></span><span></span><span></span>
-  </button>
+  <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
 </nav>
-
 <div class="mobile-menu" id="mobileMenu">
   <a href="#about" onclick="closeMob()">About</a>
   <a href="#programmes" onclick="closeMob()">Programmes</a>
+  <a href="#gallery" onclick="closeMob()">Gallery</a>
+  <a href="#videos" onclick="closeMob()">Videos</a>
   <a href="#facilities" onclick="closeMob()">Facilities</a>
   <a href="#contact" onclick="closeMob()">Contact</a>
   <a href="tel:7008879401" style="color:var(--blue);font-weight:600;">📞 7008879401</a>
@@ -213,7 +296,7 @@
         <svg width="16" height="16" fill="none" viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z" fill="currentColor"/></svg>
         Call / WhatsApp
       </a>
-      <a href="#about" class="btn-outline">Learn More &rarr;</a>
+      <a href="#about" class="btn-outline">Learn More &#8594;</a>
     </div>
   </div>
   <div class="hero-img-wrap">
@@ -228,12 +311,53 @@
         9–1 PM &amp; 5–8 PM Daily
       </div>
       <div class="timing-chip" style="margin-top:8px;">
-        <span>📍</span>
-        <span style="font-size:.75rem;">Mayuri Vihar, Berhampur, Odisha</span>
+        <span>📍</span><span style="font-size:.75rem;">Mayuri Vihar, Berhampur, Odisha</span>
       </div>
     </div>
   </div>
 </section>
+
+<!-- HERO IMAGE CAROUSEL -->
+<div id="hero-carousel">
+  <div class="hcar-wrap">
+    <div class="hcar-track-outer">
+      <div class="hcar-track" id="hcarTrack">
+        <div class="hcar-slide">
+          <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=1400&q=80" alt="Meditation & Yoga" loading="lazy">
+          <div class="hcar-overlay"></div>
+          <div class="hcar-caption"><h3>Morning Yoga &amp; Meditation</h3><p>Start the day in peace — guided yoga and pranayam sessions to restore mind and body.</p></div>
+        </div>
+        <div class="hcar-slide">
+          <img src="https://images.unsplash.com/photo-1573497620053-ea5300f94f21?w=1400&q=80" alt="Counseling Session" loading="lazy">
+          <div class="hcar-overlay"></div>
+          <div class="hcar-caption"><h3>Professional Counseling</h3><p>One-on-one and group counseling by certified professionals for lasting recovery.</p></div>
+        </div>
+        <div class="hcar-slide">
+          <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=1400&q=80" alt="Group Activity" loading="lazy">
+          <div class="hcar-overlay"></div>
+          <div class="hcar-caption"><h3>Community &amp; Group Sessions</h3><p>Building bonds of trust and shared purpose in a supportive group environment.</p></div>
+        </div>
+        <div class="hcar-slide">
+          <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=1400&q=80" alt="Gym Facility" loading="lazy">
+          <div class="hcar-overlay"></div>
+          <div class="hcar-caption"><h3>Fitness &amp; Wellness</h3><p>Modern gym, indoor games and recreational activities to strengthen the body during recovery.</p></div>
+        </div>
+        <div class="hcar-slide">
+          <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=1400&q=80" alt="Comfortable Rooms" loading="lazy">
+          <div class="hcar-overlay"></div>
+          <div class="hcar-caption"><h3>Comfortable AC Rooms</h3><p>Clean, air-conditioned rooms with personal care and a home-like atmosphere.</p></div>
+        </div>
+      </div>
+    </div>
+    <button class="hcar-btn hcar-prev" id="hcarPrev">
+      <svg width="18" height="18" fill="none" viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6" stroke="#1a5f8c" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <button class="hcar-btn hcar-next" id="hcarNext">
+      <svg width="18" height="18" fill="none" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6" stroke="#1a5f8c" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <div class="hcar-dots" id="hcarDots"></div>
+  </div>
+</div>
 
 <!-- ABOUT -->
 <section id="about">
@@ -250,22 +374,10 @@
       <h2 class="section-title">Who We <em>Are</em></h2>
       <div class="divider"></div>
       <ul class="info-list">
-        <li>
-          <div class="info-icon">🏥</div>
-          <div><strong>GourabDDC</strong> – Gourab De-Addiction Centre – is a professionally managed rehabilitation facility offering holistic recovery programmes under the umbrella of <strong>SR Foundation</strong>.</div>
-        </li>
-        <li>
-          <div class="info-icon">📍</div>
-          <div>Located at <strong>Mayuri Vihar, 3rd Lane, Sri Ram Nagar, Berhampur, Ganjam, Odisha</strong> – easily accessible from across the region.</div>
-        </li>
-        <li>
-          <div class="info-icon">📞</div>
-          <div>Reach us at <strong><a href="tel:7008879401" style="color:var(--blue);text-decoration:none;">7008879401</a></strong> via phone or WhatsApp, or email <a href="mailto:gourabddc@gmail.com" style="color:var(--blue);text-decoration:none;">gourabddc@gmail.com</a></div>
-        </li>
-        <li>
-          <div class="info-icon">⏰</div>
-          <div>Open <strong>9:00 AM – 1:00 PM</strong> &amp; <strong>5:00 PM – 8:00 PM</strong> every day. Connect with us on social media for updates.</div>
-        </li>
+        <li><div class="info-icon">🏥</div><div><strong>GourabDDC</strong> – Gourab De-Addiction Centre – is a professionally managed rehabilitation facility offering holistic recovery programmes under the umbrella of <strong>SR Foundation</strong>.</div></li>
+        <li><div class="info-icon">📍</div><div>Located at <strong>Mayuri Vihar, 3rd Lane, Sri Ram Nagar, Berhampur, Ganjam, Odisha</strong> – easily accessible from across the region.</div></li>
+        <li><div class="info-icon">📞</div><div>Reach us at <strong><a href="tel:7008879401" style="color:var(--blue);text-decoration:none;">7008879401</a></strong> via phone or WhatsApp, or email <a href="mailto:gourabddc@gmail.com" style="color:var(--blue);text-decoration:none;">gourabddc@gmail.com</a></div></li>
+        <li><div class="info-icon">⏰</div><div>Open <strong>9:00 AM – 1:00 PM</strong> &amp; <strong>5:00 PM – 8:00 PM</strong> every day.</div></li>
       </ul>
     </div>
   </div>
@@ -273,49 +385,135 @@
 
 <!-- PROGRAMMES -->
 <section id="programmes">
-  <div class="reveal" style="text-align:center; max-width:560px; margin:0 auto 40px;">
+  <div class="reveal" style="text-align:center;max-width:560px;margin:0 auto 40px;">
     <div class="section-tag">What We Offer</div>
     <h2 class="section-title">Recovery <em>Programmes</em></h2>
     <div class="divider" style="margin-left:auto;margin-right:auto;"></div>
     <p class="section-desc" style="margin:0 auto;">Structured daily activities designed to rebuild mind, body, and spirit on the journey to complete recovery.</p>
   </div>
   <div class="prog-grid">
-    <div class="prog-card reveal">
-      <div class="prog-icon">🧘</div>
-      <div class="prog-name">Morning Yoga Class</div>
-      <div class="prog-desc">Start each day with mindful movement to restore balance and physical wellness.</div>
+    <div class="prog-card reveal"><div class="prog-icon">🧘</div><div class="prog-name">Morning Yoga Class</div><div class="prog-desc">Start each day with mindful movement to restore balance and physical wellness.</div></div>
+    <div class="prog-card reveal"><div class="prog-icon">📖</div><div class="prog-name">Recovery Class</div><div class="prog-desc">Structured sessions to educate and empower individuals on the path to sobriety.</div></div>
+    <div class="prog-card reveal"><div class="prog-icon">🤝</div><div class="prog-name">Group Counseling</div><div class="prog-desc">Peer-supported healing circles fostering community, empathy, and shared strength.</div></div>
+    <div class="prog-card reveal"><div class="prog-icon">💬</div><div class="prog-name">Personal Counseling</div><div class="prog-desc">One-on-one sessions with qualified counselors tailored to individual needs.</div></div>
+    <div class="prog-card reveal"><div class="prog-icon">🗣️</div><div class="prog-name">Sharing Class</div><div class="prog-desc">A safe, confidential space to share experiences and build emotional resilience.</div></div>
+    <div class="prog-card reveal"><div class="prog-icon">🌬️</div><div class="prog-name">Pranayam &amp; Meditation</div><div class="prog-desc">Ancient breathing techniques and mindfulness practices to calm the mind.</div></div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery">
+  <div class="gallery-header reveal">
+    <div>
+      <div class="section-tag">Photo Gallery</div>
+      <h2 class="section-title">Life at <em>GourabDDC</em></h2>
+      <div class="divider" style="margin-bottom:0;"></div>
     </div>
-    <div class="prog-card reveal">
-      <div class="prog-icon">📖</div>
-      <div class="prog-name">Recovery Class</div>
-      <div class="prog-desc">Structured sessions to educate and empower individuals on the path to sobriety.</div>
+    <div class="gal-tabs">
+      <button class="gal-tab active" data-gal="all">All</button>
+      <button class="gal-tab" data-gal="therapy">Therapy</button>
+      <button class="gal-tab" data-gal="facility">Facility</button>
+      <button class="gal-tab" data-gal="wellness">Wellness</button>
     </div>
-    <div class="prog-card reveal">
-      <div class="prog-icon">🤝</div>
-      <div class="prog-name">Group Counseling</div>
-      <div class="prog-desc">Peer-supported healing circles fostering community, empathy, and shared strength.</div>
+  </div>
+  <div class="gal-grid" id="galGrid">
+    <div class="gal-item wide reveal" data-cat="therapy" data-img="https://images.unsplash.com/photo-1573497620053-ea5300f94f21?w=900&q=80" data-label="Group Counseling Session">
+      <img src="https://images.unsplash.com/photo-1573497620053-ea5300f94f21?w=900&q=80" alt="Group Counseling" loading="lazy">
+      <div class="gal-item-overlay"><span class="gal-item-label">Group Counseling Session</span></div>
     </div>
-    <div class="prog-card reveal">
-      <div class="prog-icon">💬</div>
-      <div class="prog-name">Personal Counseling</div>
-      <div class="prog-desc">One-on-one sessions with qualified counselors tailored to individual needs.</div>
+    <div class="gal-item reveal" data-cat="wellness" data-img="https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=600&q=80" data-label="Morning Yoga">
+      <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=600&q=80" alt="Morning Yoga" loading="lazy">
+      <div class="gal-item-overlay"><span class="gal-item-label">Morning Yoga</span></div>
     </div>
-    <div class="prog-card reveal">
-      <div class="prog-icon">🗣️</div>
-      <div class="prog-name">Sharing Class</div>
-      <div class="prog-desc">A safe, confidential space to share experiences and build emotional resilience.</div>
+    <div class="gal-item reveal" data-cat="facility" data-img="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=600&q=80" data-label="Comfortable Rooms">
+      <img src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=600&q=80" alt="Comfortable Rooms" loading="lazy">
+      <div class="gal-item-overlay"><span class="gal-item-label">Comfortable Rooms</span></div>
     </div>
-    <div class="prog-card reveal">
-      <div class="prog-icon">🌬️</div>
-      <div class="prog-name">Pranayam &amp; Meditation</div>
-      <div class="prog-desc">Ancient breathing techniques and mindfulness practices to calm the mind and reduce cravings.</div>
+    <div class="gal-item reveal" data-cat="wellness" data-img="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&q=80" data-label="Gym Facility">
+      <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&q=80" alt="Gym Facility" loading="lazy">
+      <div class="gal-item-overlay"><span class="gal-item-label">Gym Facility</span></div>
+    </div>
+    <div class="gal-item reveal" data-cat="therapy" data-img="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=600&q=80" data-label="Meditation Class">
+      <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=600&q=80" alt="Meditation Class" loading="lazy">
+      <div class="gal-item-overlay"><span class="gal-item-label">Meditation Class</span></div>
+    </div>
+    <div class="gal-item wide reveal" data-cat="facility" data-img="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=900&q=80" data-label="Common Area">
+      <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=900&q=80" alt="Common Area" loading="lazy">
+      <div class="gal-item-overlay"><span class="gal-item-label">Common Area</span></div>
+    </div>
+    <div class="gal-item reveal" data-cat="therapy" data-img="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600&q=80" data-label="Doctor Consultation">
+      <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=600&q=80" alt="Doctor Consultation" loading="lazy">
+      <div class="gal-item-overlay"><span class="gal-item-label">Doctor Consultation</span></div>
+    </div>
+    <div class="gal-item reveal" data-cat="wellness" data-img="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=600&q=80" data-label="Diet & Nutrition">
+      <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=600&q=80" alt="Diet & Nutrition" loading="lazy">
+      <div class="gal-item-overlay"><span class="gal-item-label">Diet &amp; Nutrition</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- VIDEO CAROUSEL -->
+<section id="videos">
+  <div class="reveal" style="max-width:600px;margin-bottom:36px;">
+    <div class="section-tag">Watch &amp; Learn</div>
+    <h2 class="section-title">Recovery <em>Stories &amp; Insights</em></h2>
+    <div class="divider"></div>
+    <p class="section-desc">Real journeys, expert guidance and wellness sessions from the GourabDDC community.</p>
+  </div>
+  <div class="vcar-wrap reveal">
+    <div class="vcar-track-outer">
+      <div class="vcar-track" id="vcarTrack">
+        <div class="vcar-slide" onclick="openVideo('https://www.youtube.com/embed/inpok4MKVLM')">
+          <div class="vcar-thumb">
+            <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=600&q=80" alt="Yoga">
+            <div class="vcar-play"><div class="vcar-play-btn"><svg width="20" height="20" fill="none" viewBox="0 0 24 24"><path d="M5 3l14 9-14 9V3z" fill="#2b8cc4"/></svg></div></div>
+          </div>
+          <div class="vcar-info"><div class="vcar-tag">Wellness</div><div class="vcar-title">Morning Yoga for Recovery – Full Session</div><div class="vcar-dur">⏱ 18 min guide</div></div>
+        </div>
+        <div class="vcar-slide" onclick="openVideo('https://www.youtube.com/embed/ZToicYcHIOU')">
+          <div class="vcar-thumb">
+            <img src="https://images.unsplash.com/photo-1573497620053-ea5300f94f21?w=600&q=80" alt="Counseling">
+            <div class="vcar-play"><div class="vcar-play-btn"><svg width="20" height="20" fill="none" viewBox="0 0 24 24"><path d="M5 3l14 9-14 9V3z" fill="#2b8cc4"/></svg></div></div>
+          </div>
+          <div class="vcar-info"><div class="vcar-tag">Counseling</div><div class="vcar-title">How Group Therapy Helps in De-Addiction</div><div class="vcar-dur">⏱ 12 min talk</div></div>
+        </div>
+        <div class="vcar-slide" onclick="openVideo('https://www.youtube.com/embed/O-6f5wQXSu8')">
+          <div class="vcar-thumb">
+            <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=600&q=80" alt="Meditation">
+            <div class="vcar-play"><div class="vcar-play-btn"><svg width="20" height="20" fill="none" viewBox="0 0 24 24"><path d="M5 3l14 9-14 9V3z" fill="#2b8cc4"/></svg></div></div>
+          </div>
+          <div class="vcar-info"><div class="vcar-tag">Meditation</div><div class="vcar-title">Pranayam &amp; Breathing Techniques for Calm</div><div class="vcar-dur">⏱ 22 min session</div></div>
+        </div>
+        <div class="vcar-slide" onclick="openVideo('https://www.youtube.com/embed/mNDAbCKjVpE')">
+          <div class="vcar-thumb">
+            <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&q=80" alt="Fitness">
+            <div class="vcar-play"><div class="vcar-play-btn"><svg width="20" height="20" fill="none" viewBox="0 0 24 24"><path d="M5 3l14 9-14 9V3z" fill="#2b8cc4"/></svg></div></div>
+          </div>
+          <div class="vcar-info"><div class="vcar-tag">Fitness</div><div class="vcar-title">Exercise &amp; Physical Fitness During Recovery</div><div class="vcar-dur">⏱ 15 min workout</div></div>
+        </div>
+        <div class="vcar-slide" onclick="openVideo('https://www.youtube.com/embed/qDkG5C0BQDY')">
+          <div class="vcar-thumb">
+            <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?w=600&q=80" alt="Nutrition">
+            <div class="vcar-play"><div class="vcar-play-btn"><svg width="20" height="20" fill="none" viewBox="0 0 24 24"><path d="M5 3l14 9-14 9V3z" fill="#2b8cc4"/></svg></div></div>
+          </div>
+          <div class="vcar-info"><div class="vcar-tag">Nutrition</div><div class="vcar-title">Diet &amp; Nutrition Plan for De-Addiction Recovery</div><div class="vcar-dur">⏱ 10 min guide</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="vcar-nav">
+      <button class="vcar-btn" id="vcarPrev">
+        <svg width="16" height="16" fill="none" viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+      <button class="vcar-btn" id="vcarNext">
+        <svg width="16" height="16" fill="none" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
     </div>
   </div>
 </section>
 
 <!-- FACILITIES -->
 <section id="facilities">
-  <div class="reveal" style="max-width:600px; margin-bottom:0;">
+  <div class="reveal" style="max-width:600px;margin-bottom:0;">
     <div class="section-tag">Our Facilities</div>
     <h2 class="section-title">Comfortable &amp; <em>Complete</em> Care</h2>
     <div class="divider"></div>
@@ -346,6 +544,41 @@
   </div>
 </section>
 
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="reveal" style="text-align:center;max-width:560px;margin:0 auto 40px;">
+    <div class="section-tag">Testimonials</div>
+    <h2 class="section-title">Words of <em>Hope</em></h2>
+    <div class="divider" style="margin-left:auto;margin-right:auto;"></div>
+  </div>
+  <div class="testi-grid">
+    <div class="testi-card reveal">
+      <div class="testi-quote-mark">"</div>
+      <div class="testi-text">GourabDDC gave my son a second chance at life. The counselors are incredibly compassionate and the structured programme helped him rebuild his confidence day by day.</div>
+      <div class="testi-author">
+        <div class="testi-avatar">👨</div>
+        <div><div class="testi-name">Ramesh Patra</div><div class="testi-role">Family Member, Berhampur</div><div class="testi-stars">★★★★★</div></div>
+      </div>
+    </div>
+    <div class="testi-card reveal">
+      <div class="testi-quote-mark">"</div>
+      <div class="testi-text">I was at my lowest point when I came here. The morning yoga, personal counseling and the warm staff made me feel human again. I am 8 months sober now.</div>
+      <div class="testi-author">
+        <div class="testi-avatar">🧑</div>
+        <div><div class="testi-name">Anonymous</div><div class="testi-role">Former Resident, 8 months recovery</div><div class="testi-stars">★★★★★</div></div>
+      </div>
+    </div>
+    <div class="testi-card reveal">
+      <div class="testi-quote-mark">"</div>
+      <div class="testi-text">The facilities are excellent — clean AC rooms, proper diet, gym and a library. The psychiatrist consultations were a turning point. Highly recommended to all families.</div>
+      <div class="testi-author">
+        <div class="testi-avatar">👩</div>
+        <div><div class="testi-name">Sunita Mohanty</div><div class="testi-role">Sister of Resident, Ganjam</div><div class="testi-stars">★★★★★</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- CONTACT -->
 <section id="contact">
   <div class="contact-grid">
@@ -368,37 +601,13 @@
           <svg width="20" height="20" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" stroke="#7ec8e3" stroke-width="2"/><path d="M12 7v5l3 3" stroke="#7ec8e3" stroke-width="2" stroke-linecap="round"/></svg>
           Centre Timings
         </div>
-        <div class="timing-row">
-          <span class="t-label">Morning Session</span>
-          <span class="t-val">9:00 AM – 1:00 PM <span class="t-badge">Daily</span></span>
-        </div>
-        <div class="timing-row">
-          <span class="t-label">Evening Session</span>
-          <span class="t-val">5:00 PM – 8:00 PM <span class="t-badge">Daily</span></span>
-        </div>
+        <div class="timing-row"><span class="t-label">Morning Session</span><span class="t-val">9:00 AM – 1:00 PM <span class="t-badge">Daily</span></span></div>
+        <div class="timing-row"><span class="t-label">Evening Session</span><span class="t-val">5:00 PM – 8:00 PM <span class="t-badge">Daily</span></span></div>
       </div>
       <div class="contact-info reveal">
-        <a href="tel:7008879401" class="cinfo-card">
-          <div class="cinfo-icon">📞</div>
-          <div>
-            <div class="cinfo-label">Phone / WhatsApp</div>
-            <div class="cinfo-val">7008879401</div>
-          </div>
-        </a>
-        <a href="mailto:gourabddc@gmail.com" class="cinfo-card">
-          <div class="cinfo-icon">✉️</div>
-          <div>
-            <div class="cinfo-label">Email</div>
-            <div class="cinfo-val">gourabddc@gmail.com</div>
-          </div>
-        </a>
-        <div class="cinfo-card" style="cursor:default;">
-          <div class="cinfo-icon">📍</div>
-          <div>
-            <div class="cinfo-label">Address</div>
-            <div class="cinfo-val">Mayuri Vihar, 3rd Lane, Sri Ram Nagar,<br>Berhampur, Ganjam, Odisha</div>
-          </div>
-        </div>
+        <a href="tel:7008879401" class="cinfo-card"><div class="cinfo-icon">📞</div><div><div class="cinfo-label">Phone / WhatsApp</div><div class="cinfo-val">7008879401</div></div></a>
+        <a href="mailto:gourabddc@gmail.com" class="cinfo-card"><div class="cinfo-icon">✉️</div><div><div class="cinfo-label">Email</div><div class="cinfo-val">gourabddc@gmail.com</div></div></a>
+        <div class="cinfo-card" style="cursor:default;"><div class="cinfo-icon">📍</div><div><div class="cinfo-label">Address</div><div class="cinfo-val">Mayuri Vihar, 3rd Lane, Sri Ram Nagar,<br>Berhampur, Ganjam, Odisha</div></div></div>
       </div>
     </div>
   </div>
@@ -414,23 +623,119 @@
   <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
 </a>
 
-<script>
-  const nav = document.getElementById('navbar');
-  window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 30); });
+<!-- VIDEO MODAL -->
+<div class="vid-modal" id="vidModal">
+  <div class="vid-modal-inner">
+    <button class="vid-modal-close" onclick="closeVideo()">&#10005;</button>
+    <div class="vid-ratio"><iframe id="vidFrame" src="" allow="autoplay;encrypted-media" allowfullscreen></iframe></div>
+  </div>
+</div>
 
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <div class="lb-inner">
+    <button class="lb-close" onclick="closeLb()">&#10005;</button>
+    <div class="lb-arrows">
+      <button class="lb-arrow" onclick="lbNav(-1)">&#8592;</button>
+      <button class="lb-arrow" onclick="lbNav(1)">&#8594;</button>
+    </div>
+    <img class="lb-img" id="lbImg" src="" alt="">
+    <div class="lb-caption" id="lbCap"></div>
+  </div>
+</div>
+
+<script>
+  // NAV scroll
+  const nav = document.getElementById('navbar');
+  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 30));
   const ham = document.getElementById('hamburger');
   const mob = document.getElementById('mobileMenu');
   ham.addEventListener('click', () => mob.classList.toggle('open'));
   function closeMob(){ mob.classList.remove('open'); }
 
-  const reveals = document.querySelectorAll('.reveal');
+  // Reveal
   const obs = new IntersectionObserver((entries) => {
-    entries.forEach((e, i) => {
-      if(e.isIntersecting){ setTimeout(() => e.target.classList.add('visible'), i * 70); obs.unobserve(e.target); }
-    });
-  }, { threshold: 0.1 });
-  reveals.forEach(r => obs.observe(r));
+    entries.forEach((e,i) => { if(e.isIntersecting){ setTimeout(() => e.target.classList.add('visible'), i*60); obs.unobserve(e.target); } });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(r => obs.observe(r));
 
+  // ── HERO CAROUSEL ──
+  const hTrack = document.getElementById('hcarTrack');
+  const hSlides = hTrack.querySelectorAll('.hcar-slide');
+  const hDotsWrap = document.getElementById('hcarDots');
+  let hIdx = 0, hAuto;
+  hSlides.forEach((_,i) => {
+    const d = document.createElement('button');
+    d.className = 'hcar-dot' + (i===0?' active':'');
+    d.addEventListener('click', () => hGo(i));
+    hDotsWrap.appendChild(d);
+  });
+  function hGo(n){
+    hIdx = (n + hSlides.length) % hSlides.length;
+    hTrack.style.transform = `translateX(-${hIdx*100}%)`;
+    document.querySelectorAll('.hcar-dot').forEach((d,i) => d.classList.toggle('active', i===hIdx));
+    resetHAuto();
+  }
+  function resetHAuto(){ clearInterval(hAuto); hAuto = setInterval(() => hGo(hIdx+1), 4500); }
+  document.getElementById('hcarPrev').addEventListener('click', () => hGo(hIdx-1));
+  document.getElementById('hcarNext').addEventListener('click', () => hGo(hIdx+1));
+  resetHAuto();
+
+  // ── VIDEO CAROUSEL ──
+  const vTrack = document.getElementById('vcarTrack');
+  let vIdx = 0;
+  function getVVisible(){ return window.innerWidth < 720 ? 1 : window.innerWidth < 960 ? 2 : 3; }
+  function vGo(dir){
+    const slides = vTrack.querySelectorAll('.vcar-slide');
+    const vis = getVVisible();
+    const max = slides.length - vis;
+    vIdx = Math.max(0, Math.min(vIdx + dir, max));
+    const w = vTrack.querySelector('.vcar-slide').offsetWidth + 20;
+    vTrack.style.transform = `translateX(-${vIdx * w}px)`;
+  }
+  document.getElementById('vcarPrev').addEventListener('click', () => vGo(-1));
+  document.getElementById('vcarNext').addEventListener('click', () => vGo(1));
+  window.addEventListener('resize', () => { vIdx=0; vTrack.style.transform=''; });
+
+  // Video modal
+  function openVideo(url){ document.getElementById('vidFrame').src = url + '?autoplay=1'; document.getElementById('vidModal').classList.add('open'); }
+  function closeVideo(){ document.getElementById('vidModal').classList.remove('open'); document.getElementById('vidFrame').src = ''; }
+  document.getElementById('vidModal').addEventListener('click', function(e){ if(e.target===this) closeVideo(); });
+
+  // ── GALLERY ──
+  const galItems = document.querySelectorAll('.gal-item');
+  let lbItems = [], lbCur = 0;
+  document.querySelectorAll('.gal-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.gal-tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      const cat = tab.dataset.gal;
+      galItems.forEach(item => {
+        const match = cat==='all' || item.dataset.cat===cat;
+        item.style.display = match ? '' : 'none';
+        if(match){ item.style.animation='none'; requestAnimationFrame(() => { item.style.animation=''; }); }
+      });
+    });
+  });
+  galItems.forEach((item, i) => {
+    item.addEventListener('click', () => {
+      lbItems = [...document.querySelectorAll('.gal-item[style=""], .gal-item:not([style])')].filter(el => el.style.display !== 'none');
+      lbCur = lbItems.indexOf(item);
+      if(lbCur === -1){ lbItems = [...galItems]; lbCur = i; }
+      showLb();
+    });
+  });
+  function showLb(){
+    const item = lbItems[lbCur];
+    document.getElementById('lbImg').src = item.dataset.img;
+    document.getElementById('lbCap').textContent = item.dataset.label || '';
+    document.getElementById('lightbox').classList.add('open');
+  }
+  function lbNav(dir){ lbCur = (lbCur + dir + lbItems.length) % lbItems.length; showLb(); }
+  function closeLb(){ document.getElementById('lightbox').classList.remove('open'); }
+  document.getElementById('lightbox').addEventListener('click', function(e){ if(e.target===this) closeLb(); });
+
+  // Facilities tabs
   document.querySelectorAll('.fac-tab').forEach(tab => {
     tab.addEventListener('click', () => {
       document.querySelectorAll('.fac-tab').forEach(t => t.classList.remove('active'));
@@ -439,11 +744,14 @@
       const grp = document.getElementById('g-' + tab.dataset.group);
       grp.classList.add('active');
       grp.querySelectorAll('.fac-item').forEach((el,i) => {
-        el.style.opacity=0; el.style.transform='translateY(16px)';
-        setTimeout(() => { el.style.transition='opacity .4s ease, transform .4s ease'; el.style.opacity=1; el.style.transform='none'; }, i*60);
+        el.style.opacity=0; el.style.transform='translateY(14px)';
+        setTimeout(() => { el.style.transition='opacity .35s ease,transform .35s ease'; el.style.opacity=1; el.style.transform='none'; }, i*55);
       });
     });
   });
+
+  // Keyboard escape
+  document.addEventListener('keydown', e => { if(e.key==='Escape'){ closeVideo(); closeLb(); } });
 </script>
 </body>
 </html>
