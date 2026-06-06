@@ -1,0 +1,17 @@
+{
+  "name": "Gourab De Drug Addiction Centre",
+  "short_name": "Gourab DDC",
+  "description": "De-addiction and recovery centre in Berhampur, Odisha.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2b8cc4",
+  "icons": [
+    {
+      "src": "assets/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

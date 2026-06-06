@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://gourabdedrugaddictioncentre.com/</loc>
+    <lastmod>2026-06-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://gourabdedrugaddictioncentre.com/assets/images/gallery/centre-gallery-01.jpg</image:loc>
+      <image:title>Group Counseling Session</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://gourabdedrugaddictioncentre.com/assets/images/gallery/centre-gallery-02.jpg</image:loc>
+      <image:title>Morning Yoga</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://gourabdedrugaddictioncentre.com/assets/images/gallery/centre-gallery-03.jpg</image:loc>
+      <image:title>Comfortable Rooms</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://gourabdedrugaddictioncentre.com/assets/images/gallery/centre-gallery-04.jpg</image:loc>
+      <image:title>Gym Facility</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://gourabdedrugaddictioncentre.com/assets/images/gallery/centre-gallery-05.jpg</image:loc>
+      <image:title>Meditation Class</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://gourabdedrugaddictioncentre.com/assets/images/gallery/centre-gallery-06.jpg</image:loc>
+      <image:title>Common Area</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://gourabdedrugaddictioncentre.com/assets/images/gallery/centre-gallery-07.jpg</image:loc>
+      <image:title>Doctor Consultation</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://gourabdedrugaddictioncentre.com/assets/images/gallery/centre-gallery-08.jpg</image:loc>
+      <image:title>Diet and Nutrition</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://gourabdedrugaddictioncentre.com/assets/images/gallery/centre-gallery-09.jpg</image:loc>
+      <image:title>Residential Care</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://gourabdedrugaddictioncentre.com/assets/images/gallery/centre-gallery-10.jpg</image:loc>
+      <image:title>Wellness Activity</image:title>
+    </image:image>
+  </url>
+</urlset>
