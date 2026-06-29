@@ -1,4 +1,4 @@
-﻿:root {
+:root {
     --sky:#e8f4fd; --sky-mid:#c2e2f7; --sky-deep:#7ec8e3;
     --blue:#2b8cc4; --blue-dark:#1a5f8c; --navy:#0d3a57;
     --white:#ffffff; --off-white:#f5faff;
@@ -14,8 +14,8 @@
   nav{position:fixed;top:0;left:0;right:0;z-index:999;display:flex;align-items:center;justify-content:space-between;padding:0 6vw;height:76px;background:rgba(255,255,255,0.8);backdrop-filter:blur(22px);border-bottom:1px solid rgba(43,140,196,0.12);transition:box-shadow .3s,background .3s;}
   nav.scrolled{box-shadow:0 12px 34px rgba(15,59,87,0.09);background:rgba(255,255,255,0.92);}
   .nav-brand{display:flex;align-items:center;gap:12px;text-decoration:none;flex:0 1 360px;min-width:0;}
-  .nav-logo-mark{width:54px;height:54px;border-radius:16px;overflow:hidden;display:flex;align-items:center;justify-content:center;flex-shrink:0;background:var(--navy);box-shadow:0 10px 24px rgba(43,140,196,0.16);}
-  .nav-logo-img{display:block;width:100%;height:100%;object-fit:cover;}
+  .nav-logo-mark{width:54px;height:54px;border-radius:16px;overflow:hidden;display:flex;align-items:center;justify-content:center;flex-shrink:0;background:#ffffff;box-shadow:0 10px 24px rgba(43,140,196,0.08);border:1px solid rgba(43,140,196,0.12);}
+  .nav-logo-img{display:block;width:100%;height:100%;object-fit:contain;padding:4px;}
   .nav-brand-copy{display:flex;flex-direction:column;min-width:0;}
   .nav-logo{font-family:'Cormorant Garamond',serif;font-size:clamp(1.05rem,1.8vw,1.32rem);font-weight:700;color:var(--blue-dark);line-height:1.08;white-space:normal;}
   .nav-logo span{color:var(--blue);}
